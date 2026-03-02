@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jobs API - Manage Your Applications</title>
+    <!-- Google Fonts for premium typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for sleek icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ======================= -->
+        <!--  AUTHENTICATION VIEW   -->
+        <!-- ======================= -->
+        <div id="auth-view" class="view active">
+            <div class="auth-card">
+                <div class="logo">
+                    <i class="fa-solid fa-building-columns"></i>
+                    <h1>Jobs API</h1>
+                </div>
+                <p class="subtitle">Track and manage your job applications beautifully.</p>
+                
+                <div class="auth-tabs">
+                    <button id="tab-login" class="tab active">Login</button>
+                    <button id="tab-register" class="tab">Register</button>
+                </div>
+                
+                <div id="form-error" class="hidden error-msg"></div>
+
+                <!-- Login Form -->
+                <form id="login-form" class="auth-form active text-left">
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <i class="fa-solid fa-envelope icon"></i>
+                        <input type="email" id="login-email" required placeholder="name@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <i class="fa-solid fa-lock icon"></i>
+                        <input type="password" id="login-password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Sign In <i class="fa-solid fa-arrow-right ml-2"></i>
+                    </button>
+                </form>
+
+                <!-- Register Form -->
+                <form id="register-form" class="auth-form hidden text-left">
+                    <div class="input-group">
+                        <label for="register-name">Full Name</label>
+                        <i class="fa-solid fa-user icon"></i>
+                        <input type="text" id="register-name" required placeholder="John Doe">
+                    </div>
+                    <div class="input-group">
+                        <label for="register-email">Email</label>
+                        <i class="fa-solid fa-envelope icon"></i>
+                        <input type="email" id="register-email" required placeholder="name@example.com">
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Password</label>
+                        <i class="fa-solid fa-lock icon"></i>
+                        <input type="password" id="register-password" required placeholder="••••••••" minlength="6">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Create Account <i class="fa-solid fa-user-plus ml-2"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <!-- ======================= -->
+        <!--     DASHBOARD VIEW     -->
+        <!-- ======================= -->
+        <div id="dashboard-view" class="view hidden">
+            <nav class="navbar">
+                <div class="nav-brand">
+                    <i class="fa-solid fa-building-columns"></i> Jobs Tracker
+                </div>
+                <div class="nav-user">
+                    <span id="user-greeting">Hello, User</span>
+                    <button id="logout-btn" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+            </nav>
+
+            <main class="dashboard-content">
+                <!-- Add New Job Section -->
+                <section class="add-job-section">
+                    <h3><i class="fa-solid fa-plus-circle"></i> Add New Job Application</h3>
+                    <div id="job-form-msg" class="hidden"></div>
+                    
+                    <form id="job-form" class="grid-form">
+                        <input type="hidden" id="edit-job-id">
+                        
+                        <div class="input-group">
+                            <label for="job-company">Company Name</label>
+                            <input type="text" id="job-company" required placeholder="e.g. Google">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="job-position">Position</label>
+                            <input type="text" id="job-position" required placeholder="e.g. Frontend Engineer">
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="job-status">Status</label>
+                            <div class="select-wrapper">
+                                <select id="job-status">
+                                    <option value="pending">Pending</option>
+                                    <option value="interview">Interview</option>
+                                    <option value="declined">Declined</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down arrow"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" id="cancel-edit-btn" class="btn btn-text hidden">Cancel Edit</button>
+                            <button type="submit" id="submit-job-btn" class="btn btn-primary">Add Job</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- Jobs List Section -->
+                <section class="jobs-display">
+                    <div class="section-header">
+                        <h2>Your Applications</h2>
+                        <span id="job-count" class="badge">0 Total</span>
+                    </div>
+                    
+                    <div id="jobs-container" class="jobs-grid">
+                        <!-- Loading skeleton -->
+                        <div class="job-card skeleton">
+                            <div class="skel-title"></div>
+                            <div class="skel-text"></div>
+                            <div class="skel-badge"></div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+    </div>
+
+    <!-- Main Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
